@@ -1,1 +1,1 @@
-# TD_ADXL345
+# TD_ADXL345 Library
