@@ -36,15 +36,15 @@
  * ----------------------------------------------------------------------------
 */
 void setup() {
-	/* Initialize serial port */
-	Serial.begin(9600);
-	while (!Serial) {
-		; // Wait for serial port. Remove wait if not native USB port.
-	}
+  /* Initialize serial port */
+  Serial.begin(9600);
+  while (!Serial) {
+    ; // Wait for serial port. Remove wait if not native USB port.
+  }
 
   delay(500);
   Serial.println(" ");
-  Serial.println("Testing TTD_ADXL345 Library");
+  Serial.println("Testing TD_ADXL345 Library");
   Serial.println(" ");
   delay(500);
 
