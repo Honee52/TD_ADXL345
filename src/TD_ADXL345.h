@@ -5,11 +5,12 @@
  * @details Written by Honee52 for Technode Design (info@technode.fi).
  * You may use this library as it is or change it without limitations.
  * Beerware license.
- * @version 1.0.0
+ * @version 1.0.1
  * @note 'Simple is beatiful'
  * @todo .
  * Version history:
  * Version 1.0.0    Initial version. Only very basic functions are implemented.
+ * Version 1.0.1    Function readRawData added.
  * ----------------------------------------------------------------------------
 */
 #ifndef TD_ADXL345_H
@@ -22,7 +23,7 @@
 #include "WProgram.h"
 #endif
 
-#define TD_ADXL345_VERSION "1.0.0"
+#define TD_ADXL345_VERSION "1.0.1"
 
 /**
  * ----------------------------------------------------------------------------
@@ -102,30 +103,6 @@
 #define FIFO_CTL	    0x38
 
 /**
- * ----------------------------------------------------------------------------
- * @brief Output Data Rate Table
- * Table 7
- * (Hz) Bandwidth (Hz)  Rate Code   IDD (µA)
- * 3200 1600            1111        140
- * 1600 800             1110        90
- * 800  400             1101        140
- * 400  200             1100        140
- * 200  100             1011        140
- * 100  50              1010        140
- * 50   25              1001        90
- * 25   12.5            1000        60
- * 12.5 6.25            0111        50
- * 6.25 3.13            0110        45
- * 3.13 1.56            0101        40
- * 1.56 0.78            0100        34
- * 0.78 0.39            0011        23
- * 0.39 0.20            0010        23
- * 0.20 0.10            0001        23
- * 0.10 0.05            0000        23
- * ----------------------------------------------------------------------------
-*/
-
-/**
  * --------------------------------------------------------
  * Register 0x27—ACT_INACT_CTL
  * --------------------------------------------------------
@@ -161,6 +138,30 @@
 #define ACT_Z_SOURCE    (1<<4)
 #define ACT_Y_SOURCE    (1<<5)
 #define ACT_X_SOURCE    (1<<6)
+
+/**
+ * ----------------------------------------------------------------------------
+ * @brief Output Data Rate Table
+ * Table 7
+ * (Hz)     Bandwidth (Hz)  Rate Code   IDD (µA)
+ * 3200     1600            1111        140
+ * 1600     800             1110        90
+ * 800      400             1101        140
+ * 400      200             1100        140
+ * 200      100             1011        140
+ * 100      50              1010        140
+ * 50       25              1001        90
+ * 25       12.5            1000        60
+ * 12.5     6.25            0111        50
+ * 6.25     3.13            0110        45
+ * 3.13     1.56            0101        40
+ * 1.56     0.78            0100        34
+ * 0.78     0.39            0011        23
+ * 0.39     0.20            0010        23
+ * 0.20     0.10            0001        23
+ * 0.10     0.05            0000        23
+ * ----------------------------------------------------------------------------
+*/
 
 /**
  * --------------------------------------------------------
@@ -316,6 +317,15 @@ class TD_ADXL345
      * @return boolean result
     */
     bool readData(float *x, float *y, float *z);
+
+    /**
+     * @brief Read raw data (x,y,z) from device.
+     * @param x [out] int16_t *x
+     * @param y [out] int16_t *y
+     * @param z [out] int16_t *z
+     * @return boolean result
+    */
+    bool readRawData(int16_t *x, int16_t *y, int16_t *z);
 
     /**
      * @brief Read from device register.

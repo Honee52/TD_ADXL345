@@ -5,11 +5,12 @@
  * @details Written by Honee52 for Technode Design (info@technode.fi).
  * You may use this library as it is or change it without limitations.
  * Beerware license.
- * @version 1.0.0
+ * @version 1.0.1
  * @note 'Simple is beatiful'
  * @todo .
  * Version history:
  * Version 1.0.0    Initial version. Only very basic functions are implemented.
+ * Version 1.0.1    Function readRawData added. Minor code changes.
  * ----------------------------------------------------------------------------
 */
 
@@ -87,7 +88,7 @@ bool TD_ADXL345::readData(float *x, float *y, float *z)
         return false;
     }
 
-    /* Get data from private variables */
+    /* Get data from buffer */
     u16X = (buffer[1] << 8) | buffer[0];
     u16Y = (buffer[3] << 8) | buffer[2];
     u16Z = (buffer[5] << 8) | buffer[4];   
@@ -96,6 +97,34 @@ bool TD_ADXL345::readData(float *x, float *y, float *z)
     *x = u16X * _ratio;
     *y = u16Y * _ratio;
     *z = u16Z * _ratio;
+
+    return true;
+}
+
+/**
+ * ----------------------------------------------------------------------------
+ * @brief Function readRawData(int16_t *x, int16_t *y, int16_t *z).
+ * ----------------------------------------------------------------------------
+*/
+bool TD_ADXL345::readRawData(int16_t *x, int16_t *y, int16_t *z)
+{
+    uint8_t buffer[6] = { 0, 0, 0, 0, 0, 0 };
+    
+    if (selectRegister(DATAX0) == false)
+    {
+        return false;
+    }
+
+    /* Read data bytes */
+    if (readBytes((uint8_t*) &buffer[0], 6) == false)
+    {
+        return false;
+    }
+
+    /* Get data from buffer */
+    *x = (buffer[1] << 8) | buffer[0];
+    *y = (buffer[3] << 8) | buffer[2];
+    *z = (buffer[5] << 8) | buffer[4];
 
     return true;
 }
@@ -132,8 +161,6 @@ bool TD_ADXL345::writeRegister(uint8_t u8_register, uint8_t u8_value)
     buffer[0] = u8_register;
     buffer[1] = u8_value;
 
-    //uint8_t format = readRegister(u8_register); ???
-
     _i2c->beginTransmission(_i2c_device_address);
     if (_i2c->write(buffer, 2) != 0x02)
     {
@@ -146,22 +173,17 @@ bool TD_ADXL345::writeRegister(uint8_t u8_register, uint8_t u8_value)
         return false;
     }
 
-    if (u8_register == BW_RATE)     { return true; }
-    if (u8_register == POWER_CTL)   { return true; }
+    if (u8_register != DATA_FORMAT) { return true; }
 
     /* Set data ratio */
-    if (u8_register == DATA_FORMAT)
+    switch (u8_value)
     {
-        switch (u8_value)
-        {
-            case RANGE_2G:  { _ratio = (float) (4) / 1024.0f;  break; }
-            case RANGE_4G:  { _ratio = (float) (8) / 1024.0f;  break; }
-            case RANGE_8G:  { _ratio = (float) (16) / 1024.0f; break; }
-            case RANGE_16G: { _ratio = (float) (32) / 1024.0f; break; }
-        }
-        return true;
+        case RANGE_2G:  { _ratio = (float) (4) / 1024.0f;  break; }
+        case RANGE_4G:  { _ratio = (float) (8) / 1024.0f;  break; }
+        case RANGE_8G:  { _ratio = (float) (16) / 1024.0f; break; }
+        case RANGE_16G: { _ratio = (float) (32) / 1024.0f; break; }
     }
-    return false;
+    return true;
 }
 
 /**
