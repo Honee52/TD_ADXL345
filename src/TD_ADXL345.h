@@ -72,35 +72,35 @@
  * @brief Registers.
  * --------------------------------------------------------
 */
-#define DEVID	        0x00
-#define THRESH_TAP	    0x1D
-#define OFSX	        0x1E
-#define OFSY	        0x1F
-#define OFSZ	        0x20
-#define DUR	            0x21
-#define Latent	        0x22
-#define Window	        0x23
-#define THRESH_ACT	    0x24
-#define THRESH_INACT	0x25
-#define TIME_INACT	    0x26
-#define ACT_INACT_CTL	0x27
-#define THRESH_FF	    0x28
-#define TIME_FF	        0x29
-#define TAP_AXES	    0x2A
-#define ACT_TAP_STATUS	0x2B
-#define BW_RATE	        0x2C
-#define POWER_CTL	    0x2D
-#define INT_ENABLE	    0x2E
-#define INT_MAP	        0x2F
-#define INT_SOURCE	    0x30
-#define DATA_FORMAT	    0x31
-#define DATAX0	        0x32
-#define DATAX1	        0x33
-#define DATAY0	        0x34
-#define DATAY1	        0x35
-#define DATAZ0	        0x36
-#define DATAZ1	        0x37
-#define FIFO_CTL	    0x38
+#define DEVID           0x00
+#define THRESH_TAP      0x1D
+#define OFSX            0x1E
+#define OFSY            0x1F
+#define OFSZ            0x20
+#define DUR             0x21
+#define Latent          0x22
+#define Window          0x23
+#define THRESH_ACT      0x24
+#define THRESH_INACT    0x25
+#define TIME_INACT      0x26
+#define ACT_INACT_CTL   0x27
+#define THRESH_FF       0x28
+#define TIME_FF         0x29
+#define TAP_AXES        0x2A
+#define ACT_TAP_STATUS  0x2B
+#define BW_RATE         0x2C
+#define POWER_CTL       0x2D
+#define INT_ENABLE      0x2E
+#define INT_MAP         0x2F
+#define INT_SOURCE      0x30
+#define DATA_FORMAT     0x31
+#define DATAX0          0x32
+#define DATAX1          0x33
+#define DATAY0          0x34
+#define DATAY1          0x35
+#define DATAZ0          0x36
+#define DATAZ1          0x37
+#define FIFO_CTL        0x38
 
 /**
  * --------------------------------------------------------
@@ -169,22 +169,22 @@
  * @note ODR = Output Data Rates
  * --------------------------------------------------------
 */
-#define ODR_3200_HZ	    0b1111
-#define ODR_1600_HZ	    0b1110
-#define ODR_800_HZ	    0b1101
-#define ODR_400_HZ	    0b1100
-#define ODR_200_HZ	    0b1011
-#define ODR_100_HZ	    0b1010
-#define ODR_50_HZ	    0b1001
-#define ODR_25_HZ	    0b1000
-#define ODR_12P5_HZ	    0b0111
-#define ODR_6P25_HZ	    0b0110
-#define ODR_3P13_HZ	    0b0101
-#define ODR_1P56_HZ	    0b0100
-#define ODR_0P78_HZ	    0b0011
-#define ODR_0P39_HZ	    0b0010
-#define ODR_0P20_HZ	    0b0001
-#define ODR_0P10_HZ	    0b0000
+#define ODR_3200_HZ     0b1111
+#define ODR_1600_HZ     0b1110
+#define ODR_800_HZ      0b1101
+#define ODR_400_HZ      0b1100
+#define ODR_200_HZ      0b1011
+#define ODR_100_HZ      0b1010
+#define ODR_50_HZ       0b1001
+#define ODR_25_HZ       0b1000
+#define ODR_12P5_HZ     0b0111
+#define ODR_6P25_HZ     0b0110
+#define ODR_3P13_HZ     0b0101
+#define ODR_1P56_HZ     0b0100
+#define ODR_0P78_HZ     0b0011
+#define ODR_0P39_HZ     0b0010
+#define ODR_0P20_HZ     0b0001
+#define ODR_0P10_HZ     0b0000
 #define LOW_POWER       (1<<4)
 
 /**
